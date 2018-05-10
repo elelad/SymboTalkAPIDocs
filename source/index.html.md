@@ -19,11 +19,17 @@ search: true
 
 # Introduction
 
-Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.
+Welcome to the SymboTalk API! You can use our API to search free AAC symbols at you app or software.
 
-We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.
+SymboTalk API has a database of more the 28,000 professional symbols sets like: 
+- [ARASAAC](http://www.arasaac.org/)
+- [Sclera](http://www.sclera.be/en/vzw/home)
+- [Straight Street](http://straight-street.com/gallery.php)
+- [Tawasol](http://tawasolsymbols.org/en/home/)
 
-This example API documentation page was created with [Slate](https://github.com/lord/slate). Feel free to edit it and use it as a base for your own API's documentation.
+
+
+This is a live exapmle for the API: [SymboTalkAPI](https://elelad.github.io/SymboTalkAPIExample/). 
 
 # Authentication
 
