@@ -98,6 +98,10 @@ GEM
     redcarpet (3.4.0)
     rouge (2.0.7)
     sass (3.4.23)
+    sassc (1.11.4)
+      bundler
+      ffi (~> 1.9.6)
+      sass (>= 3.3.0)
     servolux (0.12.0)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
@@ -121,9 +125,10 @@ DEPENDENCIES
   nokogiri (~> 1.6.8)
   redcarpet (~> 3.4.0)
   rouge (~> 2.0.5)
+  sassc
 
 RUBY VERSION
    ruby 2.3.3p222
 
 BUNDLED WITH
-   1.14.5
+   1.16.1
