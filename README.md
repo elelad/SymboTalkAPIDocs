@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./source/images/logo.png" alt="SymboTalk logo" width="226">
+  <img src="./source/images/androidStoreIcon.png" alt="SymboTalk logo" width="226">
 </p>
 
 <p align="center">SymboTalk API - Search free AAC symbols</p>
