@@ -29,6 +29,12 @@ The symbols are from: <a href="http://www.arasaac.org/" target="_blank">ARASAAC<
 
 You can see a live exapmle of the API <a href="https://elelad.github.io/SymboTalkAPIExample/" target="_blank">here</a>. 
 
+SymboTalk API inspired by <a href="https://www.opensymbols.org/" target"_blank">OpenSymbols</a>
+
+
+
+
+
 
 # Symbols
 
@@ -115,56 +121,10 @@ try {
 > The above command returns an array of [Symbol Object](#symbol-object) 
 
 
-<!-- structured like this: -->
 
-<!-- ```json
-[
-  {
-        "_id": "5adf6fa4795ba3078dcbcc8e",
-        "id": 24356,
-        "name": "school",
-        "license": "CC BY-NC",
-        "license_url": "http://creativecommons.org/licenses/by-nc/2.0/",
-        "author": "Sclera",
-        "author_url": "http://www.sclera.be/en/picto/copyright",
-        "repo_key": "sclera",
-        "image_url": "https://storage.googleapis.com/symbols/sclera/school.png",
-        "alt_url": "https://d18vdu4p71yql0.cloudfront.net/libraries/sclera/school.png",
-        "search_string": "school -  ",
-        "translations": [
-            {
-                "tLang": "en",
-                "tName": "school"
-            }
-        ],
-        "score": 2.2
-    },
-    {
-        "_id": "5adf6c4f795ba3078dca29cb",
-        "id": 8367,
-        "name": "school",
-        "license": "CC BY-NC-SA",
-        "license_url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
-        "author": "Sergio Palao",
-        "author_url": "http://www.catedu.es/arasaac/condiciones_uso.php",
-        "repo_key": "arasaac",
-        "image_url": "https://storage.googleapis.com/symbols/arasaac/school.png",
-        "alt_url": "https://d18vdu4p71yql0.cloudfront.net/libraries/arasaac/school.png",
-        "search_string": "school - ",
-        "translations": [
-            {
-                "tLang": "en",
-                "tName": "school"
-            }
-        ],
-        "score": 2.2
-    }
-]
-```
- -->
 This endpoint retrieves a symbols array based on the query parameters.
 
-<aside class="warning"></aside>
+<!-- <aside class="warning"></aside> -->
 
 ### HTTP Request
 
@@ -178,6 +138,11 @@ name | null | any | The symbol name you want to search.
 lang | en | en, fi, el, ro, sk, iw, fr, de, es, pt, ru, ja, sv, nl, da, hu, pl, no, ko, th, tr, cs, ar | The language of the search. the retruned json will contain a translation to this laguage.
 repo | all | all, arasaac, sclera, mulberry, tawasol | The symbols set you want to search at.
 limit | 20 | any number smaller then 50 | The number of results to retrun.
+
+
+
+
+
 
 ## Get one Symbol
 
@@ -265,9 +230,9 @@ Parameter | Default | Description
 id | null | The id of the symbol you want to retrun.
 
 
-<aside class="success">
+<!-- <aside class="success">
 When  you use 
-</aside>
+</aside> -->
 
 # Symbol Object
 > Symbol object structured like this:
@@ -331,8 +296,11 @@ When you requaest one symbol the symbol retruned will contain all translations, 
 </aside>
 
 
-# Authentication
 
+
+
+
+# Authentication
 
 <aside class="success">
 SymboTalk API is open without authentication or cors restrictions.
