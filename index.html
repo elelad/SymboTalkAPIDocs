@@ -5,7 +5,8 @@
     <meta charset="utf-8">
     <meta content="IE=edge,chrome=1" http-equiv="X-UA-Compatible">
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-    <title>API Reference</title>
+    <title>SymboTalk API - Search free AAC Symbols</title>
+    <link href="images/logo.png" rel="icon" type="image/png" />
 
     <style>
       .highlight table td { padding: 5px; }
@@ -201,7 +202,7 @@
       <script src="javascripts/all.js"></script>
   </head>
 
-  <body class="index" data-languages="[&quot;shell&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;javascript&quot;]">
+  <body class="index" data-languages="[&quot;javascript&quot;,&quot;ruby&quot;,&quot;python&quot;,&quot;php&quot;]">
     <a href="#" id="nav-button">
       <span>
         NAV
@@ -211,10 +212,10 @@
     <div class="toc-wrapper">
       <img src="images/logo.png" class="logo" alt="Logo" />
         <div class="lang-selector">
-              <a href="#" data-language-name="shell">shell</a>
+              <a href="#" data-language-name="javascript">javascript</a>
               <a href="#" data-language-name="ruby">ruby</a>
               <a href="#" data-language-name="python">python</a>
-              <a href="#" data-language-name="javascript">javascript</a>
+              <a href="#" data-language-name="php">php</a>
         </div>
         <div class="search">
           <input type="text" class="search" id="input-search" placeholder="Search">
@@ -222,112 +223,260 @@
         <ul class="search-results"></ul>
       <div id="toc" class="toc-list-h1">
           <li>
-            <a href="#introduction" class="toc-h1 toc-link" data-title="Introduction">Introduction</a>
+            <a href="#introduction" class="toc-h1 toc-link" data-title="introduction">Introduction</a>
           </li>
           <li>
-            <a href="#authentication" class="toc-h1 toc-link" data-title="Authentication">Authentication</a>
-          </li>
-          <li>
-            <a href="#kittens" class="toc-h1 toc-link" data-title="Kittens">Kittens</a>
+            <a href="#symbols" class="toc-h1 toc-link" data-title="symbols">Symbols</a>
               <ul class="toc-list-h2">
                   <li>
-                    <a href="#get-all-kittens" class="toc-h2 toc-link" data-title="Get All Kittens">Get All Kittens</a>
+                    <a href="#search-symbols" class="toc-h2 toc-link" data-title="search-symbols">Search symbols</a>
                   </li>
                   <li>
-                    <a href="#get-a-specific-kitten" class="toc-h2 toc-link" data-title="Get a Specific Kitten">Get a Specific Kitten</a>
-                  </li>
-                  <li>
-                    <a href="#delete-a-specific-kitten" class="toc-h2 toc-link" data-title="Delete a Specific Kitten">Delete a Specific Kitten</a>
+                    <a href="#get-one-symbol" class="toc-h2 toc-link" data-title="get-one-symbol">Get one Symbol</a>
                   </li>
               </ul>
           </li>
           <li>
-            <a href="#errors" class="toc-h1 toc-link" data-title="Errors">Errors</a>
+            <a href="#symbol-object" class="toc-h1 toc-link" data-title="symbol-object">Symbol Object</a>
+          </li>
+          <li>
+            <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
           </li>
       </div>
         <ul class="toc-footer">
-            <li><a href='#'>Sign Up for a Developer Key</a></li>
-            <li><a href='https://github.com/lord/slate'>Documentation Powered by Slate</a></li>
+            <li><a href=http://onelink.to/symbotalkapp>Download SymboTalk</a></li>
+            <li><a href=https://github.com/lord/slate>Documentation Powered by Slate</a></li>
         </ul>
     </div>
     <div class="page-wrapper">
       <div class="dark-box"></div>
       <div class="content">
         <h1 id='introduction'>Introduction</h1>
-<p>Welcome to the Kittn API! You can use our API to access Kittn API endpoints, which can get information on various cats, kittens, and breeds in our database.</p>
+<p>Welcome to the SymboTalk API! You can use our API to search free AAC symbols at you app or website.</p>
 
-<p>We have language bindings in Shell, Ruby, and Python! You can view code examples in the dark area to the right, and you can switch the programming language of the examples with the tabs in the top right.</p>
+<p>SymboTalk API has a database of more the 28,000 professional symbols sets, translated to 23 languages. 
+The symbols are from: <a href="http://www.arasaac.org/" target="_blank">ARASAAC</a>, <a href="http://www.sclera.be/en/vzw/home" target="_blank">Sclera</a>, <a href="http://straight-street.com/gallery.php" target="_blank">Straight Street</a> and <a href="http://tawasolsymbols.org/en/home/" target="_blank">Tawasol</a></p>
 
-<p>This example API documentation page was created with <a href="https://github.com/lord/slate">Slate</a>. Feel free to edit it and use it as a base for your own API&#39;s documentation.</p>
-<h1 id='authentication'>Authentication</h1>
-<blockquote>
-<p>To authorize, use this code:</p>
-</blockquote>
-<pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<p>You can see a live exapmle of the API <a href="https://elelad.github.io/SymboTalkAPIExample/" target="_blank">here</a>. </p>
+<h1 id='symbols'>Symbols</h1><h2 id='search-symbols'>Search symbols</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="nx">GET</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="na">https</span><span class="p">:</span><span class="c1">//symbotalkapiv1.azurewebsites.net/search/,</span>
+  <span class="na">qs</span><span class="p">:</span> <span class="p">{</span> <span class="na">name</span><span class="p">:</span> <span class="nx">school</span><span class="p">,</span> <span class="na">lang</span><span class="p">:</span> <span class="nx">en</span><span class="p">,</span> <span class="na">repo</span><span class="p">:</span> <span class="nx">all</span><span class="p">,</span> <span class="na">limit</span><span class="p">:</span> <span class="mi">10</span> <span class="p">},</span>
+  <span class="na">headers</span><span class="p">:</span> 
+   <span class="p">{</span> <span class="nx">Cache</span><span class="o">-</span><span class="na">Control</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span> <span class="p">}</span> 
+<span class="p">};</span>
 
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code><span class="c"># With shell, you can just pass the correct header with each request</span>
-curl <span class="s2">"api_endpoint_here"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
 
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="n">uri</span>
+<span class="nb">require</span> <span class="n">net</span><span class="o">/</span><span class="n">http</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://symbotalkapiv1.azurewebsites.net/search/?name=school&amp;lang=en&amp;repo=all&amp;limit=10"</span><span class="p">)</span>
+
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">"Cache-Control"</span><span class="p">]</span> <span class="o">=</span> <span class="n">no</span><span class="o">-</span><span class="n">cache</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://symbotalkapiv1.azurewebsites.net/search/"</span>
+
+<span class="n">querystring</span> <span class="o">=</span> <span class="p">{</span><span class="s">"name"</span><span class="p">:</span><span class="s">"school"</span><span class="p">,</span><span class="s">"lang"</span><span class="p">:</span><span class="s">"en"</span><span class="p">,</span><span class="s">"repo"</span><span class="p">:</span><span class="s">"all"</span><span class="p">,</span><span class="s">"limit"</span><span class="p">:</span><span class="s">"10"</span><span class="p">}</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="p">:</span> <span class="s">"no-cache"</span>
+    <span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">params</span><span class="o">=</span><span class="n">querystring</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HttpRequest</span><span class="p">();</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="nx">https</span><span class="o">://</span><span class="nx">symbotalkapiv1</span><span class="o">.</span><span class="nx">azurewebsites</span><span class="o">.</span><span class="nx">net</span><span class="o">/</span><span class="nx">search</span><span class="o">/</span><span class="p">);</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="nx">HTTP_METH_GET</span><span class="p">);</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setQueryData</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+  <span class="nx">name</span> <span class="o">=&gt;</span> <span class="nx">school</span><span class="p">,</span>
+  <span class="nx">lang</span> <span class="o">=&gt;</span> <span class="nx">en</span><span class="p">,</span>
+  <span class="nx">repo</span> <span class="o">=&gt;</span> <span class="nx">all</span><span class="p">,</span>
+  <span class="nx">limit</span> <span class="o">=&gt;</span> <span class="mi">10</span>
+<span class="p">));</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setHeaders</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+  <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="o">=&gt;</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+<span class="p">));</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+
+  <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">HttpException</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="nv">$ex</span><span class="p">;</span>
+<span class="p">}</span>
 </code></pre>
 <blockquote>
-<p>Make sure to replace <code>meowmeowmeow</code> with your API key.</p>
+<p>The above command returns an array of <a href="#symbol-object">Symbol Object</a> </p>
 </blockquote>
 
-<p>Kittn uses API keys to allow access to the API. You can register a new Kittn API key at our <a href="http://example.com/developers">developer portal</a>.</p>
+<!-- structured like this: -->
 
-<p>Kittn expects for the API key to be included in all API requests to the server in a header that looks like the following:</p>
+<!-- ```json
+[
+  {
+        "_id": "5adf6fa4795ba3078dcbcc8e",
+        "id": 24356,
+        "name": "school",
+        "license": "CC BY-NC",
+        "license_url": "http://creativecommons.org/licenses/by-nc/2.0/",
+        "author": "Sclera",
+        "author_url": "http://www.sclera.be/en/picto/copyright",
+        "repo_key": "sclera",
+        "image_url": "https://storage.googleapis.com/symbols/sclera/school.png",
+        "alt_url": "https://d18vdu4p71yql0.cloudfront.net/libraries/sclera/school.png",
+        "search_string": "school -  ",
+        "translations": [
+            {
+                "tLang": "en",
+                "tName": "school"
+            }
+        ],
+        "score": 2.2
+    },
+    {
+        "_id": "5adf6c4f795ba3078dca29cb",
+        "id": 8367,
+        "name": "school",
+        "license": "CC BY-NC-SA",
+        "license_url": "http://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "author": "Sergio Palao",
+        "author_url": "http://www.catedu.es/arasaac/condiciones_uso.php",
+        "repo_key": "arasaac",
+        "image_url": "https://storage.googleapis.com/symbols/arasaac/school.png",
+        "alt_url": "https://d18vdu4p71yql0.cloudfront.net/libraries/arasaac/school.png",
+        "search_string": "school - ",
+        "translations": [
+            {
+                "tLang": "en",
+                "tName": "school"
+            }
+        ],
+        "score": 2.2
+    }
+]
+```
+ -->
 
-<p><code>Authorization: meowmeowmeow</code></p>
+<p>This endpoint retrieves a symbols array based on the query parameters.</p>
 
-<aside class="notice">
-You must replace <code>meowmeowmeow</code> with your personal API key.
-</aside>
-<h1 id='kittens'>Kittens</h1><h2 id='get-all-kittens'>Get All Kittens</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">()</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">kittens</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">();</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">[</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Fluffums"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"calico"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">7</span><span class="w">
-  </span><span class="p">},</span><span class="w">
-  </span><span class="p">{</span><span class="w">
-    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-    </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
-  </span><span class="p">}</span><span class="w">
-</span><span class="p">]</span><span class="w">
-</span></code></pre>
-<p>This endpoint retrieves all kittens.</p>
+<aside class="warning"></aside>
 <h3 id='http-request'>HTTP Request</h3>
-<p><code>GET http://example.com/api/kittens</code></p>
-<h3 id='query-parameters'>Query Parameters</h3>
+<p><code>GET https://symbotalkapiv1.azurewebsites.net/search/?name=school&amp;lang=en&amp;repo=all&amp;limit=10</code></p>
+<h3 id='url-parameters'>URL Parameters</h3>
+<table><thead>
+<tr>
+<th>Parameter</th>
+<th>Default</th>
+<th>Allowed values</th>
+<th>Description</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>name</td>
+<td>null</td>
+<td>any</td>
+<td>The symbol name you want to search.</td>
+</tr>
+<tr>
+<td>lang</td>
+<td>en</td>
+<td>en, fi, el, ro, sk, iw, fr, de, es, pt, ru, ja, sv, nl, da, hu, pl, no, ko, th, tr, cs, ar</td>
+<td>The language of the search. the retruned json will contain a translation to this laguage.</td>
+</tr>
+<tr>
+<td>repo</td>
+<td>all</td>
+<td>all, arasaac, sclera, mulberry, tawasol</td>
+<td>The symbols set you want to search at.</td>
+</tr>
+<tr>
+<td>limit</td>
+<td>20</td>
+<td>any number smaller then 50</td>
+<td>The number of results to retrun.</td>
+</tr>
+</tbody></table>
+<h2 id='get-one-symbol'>Get one Symbol</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
+
+<span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="nx">GET</span><span class="p">,</span>
+  <span class="na">url</span><span class="p">:</span> <span class="na">https</span><span class="p">:</span><span class="c1">//symbotalkapiv1.azurewebsites.net/symbols/20,</span>
+  <span class="na">headers</span><span class="p">:</span> 
+   <span class="p">{</span> <span class="nx">Cache</span><span class="o">-</span><span class="na">Control</span><span class="p">:</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span> <span class="p">}</span> <span class="p">};</span>
+
+<span class="nx">request</span><span class="p">(</span><span class="nx">options</span><span class="p">,</span> <span class="kd">function</span> <span class="p">(</span><span class="nx">error</span><span class="p">,</span> <span class="nx">response</span><span class="p">,</span> <span class="nx">body</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">if</span> <span class="p">(</span><span class="nx">error</span><span class="p">)</span> <span class="k">throw</span> <span class="k">new</span> <span class="nb">Error</span><span class="p">(</span><span class="nx">error</span><span class="p">);</span>
+
+  <span class="nx">console</span><span class="p">.</span><span class="nx">log</span><span class="p">(</span><span class="nx">body</span><span class="p">);</span>
+<span class="p">});</span>
+
+</code></pre><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="n">uri</span>
+<span class="nb">require</span> <span class="n">net</span><span class="o">/</span><span class="n">http</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="no">URI</span><span class="p">(</span><span class="s2">"https://symbotalkapiv1.azurewebsites.net/symbols/20"</span><span class="p">)</span>
+
+<span class="n">http</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">.</span><span class="nf">host</span><span class="p">,</span> <span class="n">url</span><span class="p">.</span><span class="nf">port</span><span class="p">)</span>
+
+<span class="n">request</span> <span class="o">=</span> <span class="no">Net</span><span class="o">::</span><span class="no">HTTP</span><span class="o">::</span><span class="no">Get</span><span class="p">.</span><span class="nf">new</span><span class="p">(</span><span class="n">url</span><span class="p">)</span>
+<span class="n">request</span><span class="p">[</span><span class="s2">"Cache-Control"</span><span class="p">]</span> <span class="o">=</span> <span class="n">no</span><span class="o">-</span><span class="n">cache</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">http</span><span class="p">.</span><span class="nf">request</span><span class="p">(</span><span class="n">request</span><span class="p">)</span>
+<span class="nb">puts</span> <span class="n">response</span><span class="p">.</span><span class="nf">read_body</span>
+</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">requests</span>
+
+<span class="n">url</span> <span class="o">=</span> <span class="s">"https://symbotalkapiv1.azurewebsites.net/symbols/20"</span>
+
+<span class="n">headers</span> <span class="o">=</span> <span class="p">{</span>
+    <span class="n">Cache</span><span class="o">-</span><span class="n">Control</span><span class="p">:</span> <span class="s">"no-cache"</span>
+    <span class="p">}</span>
+
+<span class="n">response</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="s">"GET"</span><span class="p">,</span> <span class="n">url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">text</span><span class="p">)</span>
+</code></pre><pre class="highlight php tab-php"><code><span class="cp">&lt;?php</span>
+
+<span class="nv">$request</span> <span class="o">=</span> <span class="k">new</span> <span class="nx">HttpRequest</span><span class="p">();</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setUrl</span><span class="p">(</span><span class="nx">https</span><span class="o">://</span><span class="nx">symbotalkapiv1</span><span class="o">.</span><span class="nx">azurewebsites</span><span class="o">.</span><span class="nx">net</span><span class="o">/</span><span class="nx">symbols</span><span class="o">/</span><span class="mi">20</span><span class="p">);</span>
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setMethod</span><span class="p">(</span><span class="nx">HTTP_METH_GET</span><span class="p">);</span>
+
+<span class="nv">$request</span><span class="o">-&gt;</span><span class="na">setHeaders</span><span class="p">(</span><span class="k">array</span><span class="p">(</span>
+  <span class="nx">Postman</span><span class="o">-</span><span class="nx">Token</span> <span class="o">=&gt;</span> <span class="nx">c28f9b2b</span><span class="o">-</span><span class="nx">c226</span><span class="o">-</span><span class="mi">4257</span><span class="o">-</span><span class="mi">8</span><span class="nx">cc9</span><span class="o">-</span><span class="mi">126</span><span class="nx">bdc06646c</span><span class="p">,</span>
+  <span class="nx">Cache</span><span class="o">-</span><span class="nx">Control</span> <span class="o">=&gt;</span> <span class="nx">no</span><span class="o">-</span><span class="nx">cache</span>
+<span class="p">));</span>
+
+<span class="k">try</span> <span class="p">{</span>
+  <span class="nv">$response</span> <span class="o">=</span> <span class="nv">$request</span><span class="o">-&gt;</span><span class="na">send</span><span class="p">();</span>
+
+  <span class="k">echo</span> <span class="nv">$response</span><span class="o">-&gt;</span><span class="na">getBody</span><span class="p">();</span>
+<span class="p">}</span> <span class="k">catch</span> <span class="p">(</span><span class="nx">HttpException</span> <span class="nv">$ex</span><span class="p">)</span> <span class="p">{</span>
+  <span class="k">echo</span> <span class="nv">$ex</span><span class="p">;</span>
+<span class="p">}</span>
+</code></pre>
+<blockquote>
+<p>The above command returns JSON of <a href="#symbol-object">Symbol Object</a></p>
+</blockquote>
+
+<p>This endpoint retrieves one symbol by id.</p>
+<h3 id='http-request-2'>HTTP Request</h3>
+<p><code>GET https://symbotalkapiv1.azurewebsites.net/symbols/:id</code></p>
+<h3 id='request-parameters'>Request Parameters</h3>
 <table><thead>
 <tr>
 <th>Parameter</th>
@@ -336,166 +485,86 @@ You must replace <code>meowmeowmeow</code> with your personal API key.
 </tr>
 </thead><tbody>
 <tr>
-<td>include_cats</td>
-<td>false</td>
-<td>If set to true, the result will also include cats.</td>
-</tr>
-<tr>
-<td>available</td>
-<td>true</td>
-<td>If set to false, the result will include kittens that have already been adopted.</td>
+<td>id</td>
+<td>null</td>
+<td>The id of the symbol you want to retrun.</td>
 </tr>
 </tbody></table>
 
 <aside class="success">
-Remember — a happy kitten is an authenticated kitten!
+When  you use 
 </aside>
-<h2 id='get-a-specific-kitten'>Get a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="nx">get</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
+<h1 id='symbol-object'>Symbol Object</h1>
 <blockquote>
-<p>The above command returns JSON structured like this:</p>
+<p>Symbol object structured like this:</p>
 </blockquote>
 <pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Max"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"breed"</span><span class="p">:</span><span class="w"> </span><span class="s2">"unknown"</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"fluffiness"</span><span class="p">:</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"cuteness"</span><span class="p">:</span><span class="w"> </span><span class="mi">10</span><span class="w">
+    </span><span class="s2">"_id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5adf6908795ba3078dc96444"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"name"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euros"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"license"</span><span class="p">:</span><span class="w"> </span><span class="s2">"CC BY-NC-SA"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"license_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://creativecommons.org/licenses/by-nc-sa/3.0/"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"author"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Sergio Palao"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"author_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"http://www.catedu.es/arasaac/condiciones_uso.php"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"repo_key"</span><span class="p">:</span><span class="w"> </span><span class="s2">"arasaac"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"image_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://storage.googleapis.com/symbols/arasaac/5 euros.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"alt_url"</span><span class="p">:</span><span class="w"> </span><span class="s2">"https://d18vdu4p71yql0.cloudfront.net/libraries/arasaac/5 euros.png"</span><span class="p">,</span><span class="w">
+    </span><span class="s2">"translations"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"en"</span><span class="p">,</span><span class="w"> </span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euros"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"iw"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 €"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fr"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euros"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"de"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 Euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"es"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euros"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pt"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euros"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ru"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 евро"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ja"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5ユーロ"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sv"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"nl"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"da"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"hu"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euró"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"pl"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"no"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ko"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 유로"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"th"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 ยูโร"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"tr"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 avro"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"cs"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 eur"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ar"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 يورو"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"sk"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 EUR"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"fi"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euroa"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"el"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 ευρώ"</span><span class="p">},</span><span class="w">
+        </span><span class="p">{</span><span class="s2">"tLang"</span><span class="p">:</span><span class="w"> </span><span class="s2">"ro"</span><span class="p">,</span><span class="s2">"tName"</span><span class="p">:</span><span class="w"> </span><span class="s2">"5 euro"</span><span class="p">}]</span><span class="w">
 </span><span class="p">}</span><span class="w">
 </span></code></pre>
-<p>This endpoint retrieves a specific kitten.</p>
+<p>All get requaest retrun Symbol object with this fields:</p>
 
-<aside class="warning">Inside HTML code blocks like this one, you can't use Markdown, so use <code>&lt;code&gt;</code> blocks to denote code.</aside>
-<h3 id='http-request-2'>HTTP Request</h3>
-<p><code>GET http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to retrieve</td>
-</tr>
-</tbody></table>
-<h2 id='delete-a-specific-kitten'>Delete a Specific Kitten</h2><pre class="highlight ruby tab-ruby"><code><span class="nb">require</span> <span class="s1">'kittn'</span>
+<ul>
+<li>_id: The DB entry id. </li>
+<li>id: The Symbol id.</li>
+<li>name: Symbol name.</li>
+<li>license: The license of the symbol as defind by his auther.</li>
+<li>license_url: More data about the license.</li>
+<li>author: The creator of the symbol. </li>
+<li>author_url: The creator website.</li>
+<li>repo_key: The name of the symbols set. </li>
+<li>image_url: The url of the symbol image. </li>
+<li>alt_url: Alternative image url. </li>
+<li>translations: The translations fo the symbol name. </li>
+</ul>
 
-<span class="n">api</span> <span class="o">=</span> <span class="no">Kittn</span><span class="o">::</span><span class="no">APIClient</span><span class="p">.</span><span class="nf">authorize!</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="p">.</span><span class="nf">kittens</span><span class="p">.</span><span class="nf">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight python tab-python"><code><span class="kn">import</span> <span class="nn">kittn</span>
-
-<span class="n">api</span> <span class="o">=</span> <span class="n">kittn</span><span class="o">.</span><span class="n">authorize</span><span class="p">(</span><span class="s">'meowmeowmeow'</span><span class="p">)</span>
-<span class="n">api</span><span class="o">.</span><span class="n">kittens</span><span class="o">.</span><span class="n">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
-</code></pre><pre class="highlight shell tab-shell"><code>curl <span class="s2">"http://example.com/api/kittens/2"</span>
-  -X DELETE
-  -H <span class="s2">"Authorization: meowmeowmeow"</span>
-</code></pre><pre class="highlight javascript tab-javascript"><code><span class="kr">const</span> <span class="nx">kittn</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s1">'kittn'</span><span class="p">);</span>
-
-<span class="kd">let</span> <span class="nx">api</span> <span class="o">=</span> <span class="nx">kittn</span><span class="p">.</span><span class="nx">authorize</span><span class="p">(</span><span class="s1">'meowmeowmeow'</span><span class="p">);</span>
-<span class="kd">let</span> <span class="nx">max</span> <span class="o">=</span> <span class="nx">api</span><span class="p">.</span><span class="nx">kittens</span><span class="p">.</span><span class="k">delete</span><span class="p">(</span><span class="mi">2</span><span class="p">);</span>
-</code></pre>
-<blockquote>
-<p>The above command returns JSON structured like this:</p>
-</blockquote>
-<pre class="highlight json tab-json"><code><span class="p">{</span><span class="w">
-  </span><span class="s2">"id"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w">
-  </span><span class="s2">"deleted"</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="s2">":("</span><span class="w">
-</span><span class="p">}</span><span class="w">
-</span></code></pre>
-<p>This endpoint deletes a specific kitten.</p>
-<h3 id='http-request-3'>HTTP Request</h3>
-<p><code>DELETE http://example.com/kittens/&lt;ID&gt;</code></p>
-<h3 id='url-parameters-2'>URL Parameters</h3>
-<table><thead>
-<tr>
-<th>Parameter</th>
-<th>Description</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>ID</td>
-<td>The ID of the kitten to delete</td>
-</tr>
-</tbody></table>
-<h1 id='errors'>Errors</h1>
-<aside class="notice">This error section is stored in a separate file in `includes/_errors.md`. Slate allows you to optionally separate out your docs into many files...just save them to the `includes` folder and add them to the top of your `index.md`'s frontmatter. Files are included in the order listed.</aside>
-
-<p>The Kittn API uses the following error codes:</p>
-
-<table><thead>
-<tr>
-<th>Error Code</th>
-<th>Meaning</th>
-</tr>
-</thead><tbody>
-<tr>
-<td>400</td>
-<td>Bad Request -- Your request sucks.</td>
-</tr>
-<tr>
-<td>401</td>
-<td>Unauthorized -- Your API key is wrong.</td>
-</tr>
-<tr>
-<td>403</td>
-<td>Forbidden -- The kitten requested is hidden for administrators only.</td>
-</tr>
-<tr>
-<td>404</td>
-<td>Not Found -- The specified kitten could not be found.</td>
-</tr>
-<tr>
-<td>405</td>
-<td>Method Not Allowed -- You tried to access a kitten with an invalid method.</td>
-</tr>
-<tr>
-<td>406</td>
-<td>Not Acceptable -- You requested a format that isn&#39;t json.</td>
-</tr>
-<tr>
-<td>410</td>
-<td>Gone -- The kitten requested has been removed from our servers.</td>
-</tr>
-<tr>
-<td>418</td>
-<td>I&#39;m a teapot.</td>
-</tr>
-<tr>
-<td>429</td>
-<td>Too Many Requests -- You&#39;re requesting too many kittens! Slow down!</td>
-</tr>
-<tr>
-<td>500</td>
-<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
-</tr>
-<tr>
-<td>503</td>
-<td>Service Unavailable -- We&#39;re temporarily offline for maintenance. Please try again later.</td>
-</tr>
-</tbody></table>
+<aside class="notice">
+When you requaest one symbol the symbol retruned will contain all translations, if you search the symbol retruned will contain only the translation to the search language.
+</aside>
+<h1 id='authentication'>Authentication</h1>
+<aside class="success">
+SymboTalk API is open without authentication or cors restrictions.
+</aside>
 
       </div>
       <div class="dark-box">
           <div class="lang-selector">
-                <a href="#" data-language-name="shell">shell</a>
+                <a href="#" data-language-name="javascript">javascript</a>
                 <a href="#" data-language-name="ruby">ruby</a>
                 <a href="#" data-language-name="python">python</a>
-                <a href="#" data-language-name="javascript">javascript</a>
+                <a href="#" data-language-name="php">php</a>
           </div>
       </div>
     </div>
