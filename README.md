@@ -5,4 +5,4 @@
 <p align="center">SymboTalk API - Search free AAC symbols</p>
 
 
-<p align="center">See Full documentation <a href="https://elelad.github.io/SymboTalkAPIDocs/">here</a>.</p>
+<h1 align="center">See Full documentation <a href="https://elelad.github.io/SymboTalkAPIDocs/">here</a></h1>
