@@ -12,8 +12,8 @@ toc_footers:
   - <a href=http://onelink.to/symbotalkapp>Download SymboTalk</a>
   - <a href=https://github.com/lord/slate>Documentation Powered by Slate</a>
 
-# includes:
-#- errors
+includes:
+- errors
 
 search: true
 ---
