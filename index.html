@@ -242,6 +242,9 @@
           <li>
             <a href="#authentication" class="toc-h1 toc-link" data-title="authentication">Authentication</a>
           </li>
+          <li>
+            <a href="#errors" class="toc-h1 toc-link" data-title="errors">Errors</a>
+          </li>
       </div>
         <ul class="toc-footer">
             <li><a href=http://onelink.to/symbotalkapp>Download SymboTalk</a></li>
@@ -511,6 +514,36 @@ When you requaest one symbol the symbol retruned will contain all translations, 
 <aside class="success">
 SymboTalk API is open without authentication or cors restrictions.
 </aside>
+<h1 id='errors'>Errors</h1>
+<aside class="notice">
+This error section is stored in a separate file in <code>includes/_errors.md</code>. Slate allows you to optionally separate out your docs into many files...just save them to the <code>includes</code> folder and add them to the top of your <code>index.md</code>'s frontmatter. Files are included in the order listed.
+</aside>
+
+<p>The Kittn API uses the following error codes:</p>
+
+<table><thead>
+<tr>
+<th>Error Code</th>
+<th>Meaning</th>
+</tr>
+</thead><tbody>
+<tr>
+<td>400</td>
+<td>Bad Request -- Your request is invalid.</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized -- You tring to use unauthorized method.</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found -- The path could not be found.</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error -- We had a problem with our server. Try again later.</td>
+</tr>
+</tbody></table>
 
       </div>
       <div class="dark-box">
