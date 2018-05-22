@@ -140,7 +140,9 @@ repo | all | all, arasaac, sclera, mulberry, tawasol | The symbols set you want 
 limit | 20 | any number smaller then 50 | The number of results to retrun.
 
 
-
+<aside class="notice">
+If you provide unapproved values or null for: lang, repo or limit - they will fall back to the defult value.
+</aside>
 
 
 
@@ -292,7 +294,7 @@ All get requaest retrun Symbol object with this fields:
   - translations: The translations fo the symbol name. 
 
 <aside class="notice">
-When you requaest one symbol the symbol retruned will contain all translations, if you search the symbol retruned will contain only the translation to the search language.
+When you requaest one symbol the symbol retruned will contain all translations. if you search, the symbol retruned will contain only the translation for the search language.
 </aside>
 
 
