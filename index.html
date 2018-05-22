@@ -371,6 +371,10 @@ The symbols are from: <a href="http://www.arasaac.org/" target="_blank">ARASAAC<
 <td>The number of results to retrun.</td>
 </tr>
 </tbody></table>
+
+<aside class="notice">
+If you provide unapproved values or null for: lang, repo or limit - they will fall back to the defult value.
+</aside>
 <h2 id='get-one-symbol'>Get one Symbol</h2><pre class="highlight javascript tab-javascript"><code><span class="kd">var</span> <span class="nx">request</span> <span class="o">=</span> <span class="nx">require</span><span class="p">(</span><span class="s2">"request"</span><span class="p">);</span>
 
 <span class="kd">var</span> <span class="nx">options</span> <span class="o">=</span> <span class="p">{</span> <span class="na">method</span><span class="p">:</span> <span class="nx">GET</span><span class="p">,</span>
@@ -508,7 +512,7 @@ When  you use
 </ul>
 
 <aside class="notice">
-When you requaest one symbol the symbol retruned will contain all translations, if you search the symbol retruned will contain only the translation to the search language.
+When you requaest one symbol the symbol retruned will contain all translations. if you search, the symbol retruned will contain only the translation for the search language.
 </aside>
 <h1 id='authentication'>Authentication</h1>
 <aside class="success">
